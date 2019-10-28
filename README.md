@@ -1,5 +1,8 @@
 # QuickBlox React Native SDK
 
+## Documentation
+See docs at https://docs.quickblox.com/docs/react-native-quick-start
+
 ## Quick Start
 This guide demonstarates how to connect quickblox-react-native-sdk to your project and start development.
 
@@ -121,10 +124,10 @@ QB.chat
 To receive new messages, assign event handler using the code snippet below:
 
 ```javascript
-const emitter = Platform.select({
-  android: DeviceEventEmitter,
-  ios: new NativeEventEmitter(QB.chat)
-})
+import { NativeEventEmitter } from 'react-native'
+
+const emitter = new NativeEventEmitter(QB.chat)
+
 emitter.addListener(QB.chat.EVENT_TYPE.MESSAGE.RECEIVED_NEW_MESSAGE, event => {
   const { type, payload } = event
   // type - type of the event (string)
