@@ -1,6 +1,6 @@
 # QuickBlox React Native SDK
 
-## Quic Start
+## Quick Start
 This guide demonstarates how to connect quickblox-react-native-sdk to your project and start development.
 
 ### Create a new app in the Admin Panel
@@ -14,7 +14,7 @@ Quickblox application includes everything that brings messaging right into your 
 ### Install React Native SDK into your app
 To connect QuickBlox to your app just add it into your `package.json` in the root directory of the project and enter the following code snippet:
 
-`npm install quickblox-react-native-sdk`
+`npm install quickblox-react-native-sdk --save`
 
 iOS and Android have different dependencies systems. For that reason, you need to install dependencies in your iOS project. Just locate **ios/** folder in the root directory of the project and enter the following code snippet. 
 
@@ -27,22 +27,22 @@ Initialize the framework with your application credentials. Pass `appId`, `authK
 
 ```javascript
 const appSettings = {
- appId: '',
- authKey: '',
- authSecret: '',
- accountKey: '',
- apiEndpoint: '', // optional
- chatEndpoint: '' // optional
+  appId: '',
+  authKey: '',
+  authSecret: '',
+  accountKey: '',
+  apiEndpoint: '', // optional
+  chatEndpoint: '' // optional
 };
 
 QB.settings
- .init(appSettings)
-	.then(function () {
- // SDK initialized successfully
- })
-	.catch(function (e) {
- // Some error occured, look at the exception message for more details
- });
+  .init(appSettings)
+  .then(function () {
+    // SDK initialized successfully
+  })
+  .catch(function (e) {
+    // Some error occured, look at the exception message for more details
+  });
 ```
 
 #### Authorize user
@@ -51,18 +51,18 @@ In order to use the abilities of QuickBlox SDK, you need to authorize your app o
 
 ```javascript
 QB.auth
- .login({
- login: 'yourlogin',
- password: 'yourpassword'
- })
- .then(function (info) {
- // signed in successfully, handle info as necessary
- // info.user - user information
- // info.session - current session
- })
- .catch(function (e) {
- // handle error
- });
+  .login({
+    login: 'yourlogin',
+    password: 'yourpassword'
+  })
+  .then(function (info) {
+    // signed in successfully, handle info as necessary
+    // info.user - user information
+    // info.session - current session
+  })
+  .catch(function (e) {
+    // handle error
+  });
 ```
 
 **Note!**
@@ -94,17 +94,17 @@ Let’s create **1-1 dialog**. Call `QB.chat.createDialog` method and pass `QB.c
 
 ```javascript
 QB.chat
- .createDialog({
- type: QB.chat.DIALOG_TYPE.CHAT,
- occupantsIds: [12345]
- })
- .then(function (dialog) {
- // handle as necessary, i.e.
- // subscribe to chat events, typing events, etc.
- })
- .catch(function (e) {
- // handle error
- });
+  .createDialog({
+    type: QB.chat.DIALOG_TYPE.CHAT,
+    occupantsIds: [12345]
+  })
+  .then(function (dialog) {
+    // handle as necessary, i.e.
+    // subscribe to chat events, typing events, etc.
+  })
+  .catch(function (e) {
+    // handle error
+  });
 ```
 
 #### Subscribe to receive messages
@@ -113,22 +113,22 @@ QuickBlox provides message event handler allowing to notify client apps of event
 
 ```javascript
 QB.chat
- .subscribeMessageEvents({ dialogId: 'dsfsd934329hjhkda98793j2' })
- .then(function () { })
- .catch(function (e) { /* handle error */ });
+  .subscribeMessageEvents({ dialogId: 'dsfsd934329hjhkda98793j2' })
+  .then(function () { })
+  .catch(function (e) { /* handle error */ });
 ```
 
 To receive new messages, assign event handler using the code snippet below:
 
 ```javascript
 const emitter = Platform.select({
- android: DeviceEventEmitter,
- ios: new NativeEventEmitter(QB.chat)
+  android: DeviceEventEmitter,
+  ios: new NativeEventEmitter(QB.chat)
 })
 emitter.addListener(QB.chat.EVENT_TYPE.MESSAGE.RECEIVED_NEW_MESSAGE, event => {
- const { type, payload } = event
- // type - type of the event (string)
- // payload - new message (object)
+  const { type, payload } = event
+  // type - type of the event (string)
+  // payload - new message (object)
 })
 ```
 
@@ -138,15 +138,15 @@ When a dialog is created, a user can send a message. To create and send your fir
 
 ```javascript
 const message = {
- dialogId: 'dsfsd934329hjhkda98793j2',
- body: 'Hey there!',
- saveToHistory: true
+  dialogId: 'dsfsd934329hjhkda98793j2',
+  body: 'Hey there!',
+  saveToHistory: true
 };
 
 QB.chat
- .sendMessage(message)
- .then(function () { /* send successfully */ })
- .catch(function (e) { /* handle error */ })
+  .sendMessage(message)
+  .then(function () { /* send successfully */ })
+  .catch(function (e) { /* handle error */ })
 ```
 
 ## LICENSE
