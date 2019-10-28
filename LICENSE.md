@@ -1,0 +1,1 @@
+For license information, please visit: https://quickblox.com/terms-of-use/
