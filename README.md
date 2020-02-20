@@ -4,22 +4,22 @@
 See docs at https://docs.quickblox.com/docs/react-native-quick-start
 
 ## Quick Start
-This guide demonstarates how to connect quickblox-react-native-sdk to your project and start development.
+This guide demonstarates how to connect **quickblox-react-native-sdk** to your project and start development.
 
 ### Create a new app in the Admin Panel
-Quickblox application includes everything that brings messaging right into your application - chat, video calling, users, push notifications, etc. To create a QuickBlox application, follow the steps below:
+QuickBlox application includes everything that brings messaging right into your application - chat, video calling, users, push notifications, etc. To create a QuickBlox application, follow the steps below:
 
-1. Register a new account. Type in your email and password to sign in. You can also sign in with your Google or Github accounts. 
+1. Register a new account following [this link](https://admin.quickblox.com/signup). Type in your email and password to sign in. You can also sign in with your Google or Github accounts. 
 2. Create the app clicking **New app** button. 
 3. Configure the app. Type in the information about your organization into corresponding fields and click **Add** button.
-4. Go to the screen with credentials. Locate **Credentials** groupbox and copy your **Application ID**, **Authorization Key**, and **Authorization Secret**. These data are needed to run your application on QuickBlox server.
+4. Go to **Dashboard** --> **Overview** --> **Credentials** groupbox and copy your **Application ID**, **Authorization Key**, **Authorization Secret**, and **Account Key**.
 
 ### Install React Native SDK into your app
-To connect QuickBlox to your app just add it into your `package.json` in the root directory of the project and enter the following code snippet:
+To connect QuickBlox to your app just add it into your dependencies in `package.json` - to do so, in the root directory of the project execute the following command in terminal:
 
 `npm install quickblox-react-native-sdk --save`
 
-iOS and Android have different dependencies systems. For that reason, you need to install dependencies in your iOS project. Just locate **ios/** folder in the root directory of the project and enter the following code snippet. 
+iOS and Android have different dependencies systems. For that reason, you need to install dependencies in your iOS project. Just locate **ios/** folder in the root directory of the project and enter the following command in terminal: 
 
 `pod install`
 
@@ -102,24 +102,14 @@ QB.chat
     occupantsIds: [12345]
   })
   .then(function (dialog) {
-    // handle as necessary, i.e.
-    // subscribe to chat events, typing events, etc.
+    // handle as necessary
   })
   .catch(function (e) {
     // handle error
   });
 ```
 
-#### Subscribe to receive messages
-
-QuickBlox provides message event handler allowing to notify client apps of events that happen on the chat. Thus, when a dialog has been created, a user can subscribe to receive notifications about new incoming messages. To subscribe to message events call `QB.chat.subscribeMessageEvents` method and pass `dialogId` parameter to it using the following code snippet. The `QB.chat.subscribeMessageEvents` method tells SDK to send events about new messages.
-
-```javascript
-QB.chat
-  .subscribeMessageEvents({ dialogId: 'dsfsd934329hjhkda98793j2' })
-  .then(function () { })
-  .catch(function (e) { /* handle error */ });
-```
+#### Receive messages
 
 To receive new messages, assign event handler using the code snippet below:
 
