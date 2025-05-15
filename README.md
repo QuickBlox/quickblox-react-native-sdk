@@ -23,6 +23,26 @@ iOS and Android have different dependencies systems. For that reason, you need t
 
 `pod install`
 
+### ⚠️ Android – Breaking Change (from v0.12.0 and above)
+
+Starting from **v0.12.0**, the SDK **no longer manages permissions** required for video calling functionality on Android.
+
+If your app uses video calling, you must **manually declare** the necessary permissions in your app’s `AndroidManifest.xml` file.
+
+> **Note:** Ensure you're modifying the main `AndroidManifest.xml` file at the application level, **not** a test or variant manifest.
+
+#### Required Permissions Example:
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Permissions required for QuickBlox video calling functionality -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <!-- other manifest entries -->
+</manifest>
+```
+
 ### Send your first message
 #### Initialize QuickBlox SDK
 
